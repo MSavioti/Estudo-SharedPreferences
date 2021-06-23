@@ -1,4 +1,4 @@
-import 'package:estudo_shared_preferences/pages/home.dart';
+import 'package:estudo_shared_preferences/app/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -8,9 +8,8 @@ class App extends StatelessWidget {
       title: 'Shared Preferences DEMO',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.lime,
-      ),
-      home: Home(),
+          textTheme: TextTheme(bodyText2: TextStyle(color: Colors.white))),
+      home: HomePage(),
     );
   }
 }
