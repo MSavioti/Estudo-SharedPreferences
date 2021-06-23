@@ -1,3 +1,4 @@
+import 'package:estudo_shared_preferences/app/pages/home/module/home_module.dart';
 import 'package:flutter/material.dart';
 
 class Counter extends StatefulWidget {
@@ -6,12 +7,27 @@ class Counter extends StatefulWidget {
 }
 
 class _CounterState extends State<Counter> {
+  final HomeModule _homeModule = HomeModule();
   var counter = 0;
 
-  void acrescentar() {
+  @override
+  void initState() {
+    _loadCounter();
+    super.initState();
+  }
+
+  void _loadCounter() async {
+    var _counter = await _homeModule.loadCounter();
+    setState(() {
+      counter = _counter;
+    });
+  }
+
+  void _increment() {
     setState(() {
       counter++;
     });
+    _homeModule.saveCounter(counter);
   }
 
   @override
@@ -38,7 +54,7 @@ class _CounterState extends State<Counter> {
         ),
         FloatingActionButton(
           backgroundColor: Colors.white,
-          onPressed: acrescentar,
+          onPressed: _increment,
           child: Icon(
             Icons.add,
             color: Colors.black,
